@@ -1,0 +1,34 @@
+# macOS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+
+# Swift / Xcode
+/.build
+/Packages
+DerivedData/
+xcuserdata/
+*.xcworkspace/xcuserdata/
+.swiftpm/configuration/registries.json
+.swiftpm/xcode/package.xcworkspace/contents.xcworkspacedata
+.netrc
+
+# Build outputs
+*.app
+*.dmg
+*.zip
+rw.*.dmg
+temp.dmg
+dmg_root/
+
+# Test / scratch scripts
+test_*.sh
+scratch_*.sh
+make_*.py
+
+# Credentials — never commit these
+kaggle.json
+credentials.json
+accounts.json
