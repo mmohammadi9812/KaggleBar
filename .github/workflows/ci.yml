@@ -3,6 +3,7 @@ name: Swift CI
 on:
   push:
     branches: [ "main", "master" ]
+    tags: [ "v*.*.*" ]
   pull_request:
     branches: [ "main", "master" ]
 
@@ -10,6 +11,7 @@ jobs:
   build:
     name: Build & Package (macOS)
     runs-on: macos-latest
+    if: github.event_name != 'push' || !startsWith(github.ref, 'refs/tags/')
 
     steps:
       - name: Checkout repository
@@ -22,6 +24,9 @@ jobs:
 
       - name: Build Debug
         run: swift build -v
+
+      - name: Run Tests
+        run: swift test
 
       - name: Install create-dmg
         run: brew install create-dmg
@@ -36,3 +41,33 @@ jobs:
         with:
           name: KaggleBar-DMG
           path: KaggleBar.dmg
+
+  release:
+    name: Release (macOS)
+    runs-on: macos-latest
+    if: startsWith(github.ref, 'refs/tags/')
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Show Swift & Xcode version
+        run: |
+          swift --version
+          xcodebuild -version
+
+      - name: Run Tests
+        run: swift test
+
+      - name: Install create-dmg
+        run: brew install create-dmg
+
+      - name: Build & Package DMG Installer
+        run: |
+          chmod +x build.sh
+          ./build.sh --no-open --dmg
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: KaggleBar.dmg

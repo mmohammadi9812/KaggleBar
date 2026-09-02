@@ -1,0 +1,6 @@
+--indent 4
+--max-line-length 120
+--self init
+--semicolon false
+--strip-trailing-macros false
+--header ""

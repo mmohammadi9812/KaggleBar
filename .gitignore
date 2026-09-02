@@ -28,6 +28,9 @@ test_*.sh
 scratch_*.sh
 make_*.py
 
+# Agents
+.commandcode/
+
 # Credentials — never commit these
 kaggle.json
 credentials.json

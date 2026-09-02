@@ -1,0 +1,13 @@
+line_length:
+  warning: 120
+  error: 200
+opt_in:
+  - void
+file_length:
+  warning: 1200
+  error: 2000
+indentation:
+  spaces: 4
+  any_switch_case_level: 1
+trailing_whitespace:
+  skipe_blocks_and_classes: true
