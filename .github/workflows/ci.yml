@@ -68,6 +68,6 @@ jobs:
           ./build.sh --no-open --dmg
 
       - name: Create GitHub Release
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@v3
         with:
           files: KaggleBar.dmg
